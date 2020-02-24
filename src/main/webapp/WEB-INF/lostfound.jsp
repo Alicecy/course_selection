@@ -52,14 +52,7 @@
 					<a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
 					   href="javascript:void(0)"><i class="fa fa-bars"></i></a>
 				</li>
-				<li>
-					<form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-						<input type="text" placeholder="Search..." class="form-control">
-						<a href="">
-							<i class="fa fa-search"></i>
-						</a>
-					</form>
-				</li>
+				
 
 				<c:if test="${!empty student}">
 					<li>
@@ -116,10 +109,6 @@
 					<a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw"
 					                                          aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
 				</li>
-				<li>
-					<a href="/teacher_channel" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher
-						Channel]</a>
-				</li>
 			</ul>
 			<div class="center p-20">
 				<c:if test="${empty student}">
@@ -171,8 +160,8 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td></td>
-										<td>${c.place}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${c.time}" pattern="yyyy-MM-dd HH:mm"/></td>
+										<td>发布时间：<fmt:formatDate value="${c.time}" pattern="yyyy-MM-dd HH:mm"/></td>
+										<td>${c.place}&nbsp;(${c.number})&nbsp;</td>
 									</tr>
 									<br>
 								</table>

@@ -41,7 +41,7 @@
                 </form>
                 <%--<h2 align="center" hidden id="message">${sid}${errorMeg}</h2>--%>
                 <div class="text-foot">
-                    <a href="/homePage_teacher" class="login-link">返回主页</a>
+                    <a href="/homepage_teacher" class="login-link">返回主页</a>
                 </div>
             </div>
         </div>

@@ -64,14 +64,6 @@
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
                        href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
                 <c:if test="${!empty teacher}">
                     <li>
                         <a class="profile-pic" href="#">用户：${teacher.tname}</a>
@@ -102,7 +94,7 @@
             </div>
             <ul class="nav" id="side-menu">
                 <li style="padding: 70px 0 0;">
-                    <a href="homePage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
+                    <a href="homepage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
                 </li>
                 <li>
                     <a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
@@ -118,6 +110,9 @@
                 </li>
                 <li>
                     <a href="reply_message" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>回复留言板<br/>[Reply to student messages]</a>
+                </li>
+                <li>
+                    <a href="lostfound_teacher" class="waves-effect"><i class="fa fa-search"></i> 失物招领<br/>[Lost and Found]</a>
                 </li>
                 <li>
                     <a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -147,7 +142,7 @@
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="homePage_teacher">主页</a></li>
+                        <li><a href="homepage_teacher">主页</a></li>
                         <li class="active">按课程查询任课教师</li>
                     </ol>
                 </div>

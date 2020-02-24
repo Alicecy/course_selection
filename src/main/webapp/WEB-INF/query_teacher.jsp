@@ -69,14 +69,6 @@
 				<li>
 					<a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
 				</li>
-				<li>
-					<form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-						<input type="text" placeholder="Search..." class="form-control">
-						<a href="">
-							<i class="fa fa-search"></i>
-						</a>
-					</form>
-				</li>
 
 				<c:if test="${!empty student}">
 					<li>
@@ -126,9 +118,6 @@
 				<li>
 					<a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
 				</li>
-				<li>
-					<a href="/teacher_channel" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher Channel]</a>
-				</li>
 			</ul>
 			<div class="center p-20">
 
@@ -174,6 +163,28 @@
 								<select id="eid" name="eid" class="form-control form-control-line">
 									<option value ="0">--请选择--</option>
 									<option value="1">落球法测量液体的黏滞系数</option>
+									<option value="2">拉伸法测量金属丝杨氏模量</option>
+									<option value="3">测量金属的密度</option>
+									<option value="4">单摆和复摆实验</option>
+									<option value="5">三线摆和扭摆实验</option>
+									<option value="6">空气密度与普适气体常数测量</option>
+									<option value="7">液体表面张力系数的测定</option>
+									<option value="8">惠斯通电桥实验</option>
+									<option value="9">数字示波器的使用</option>
+									<option value="10">电路元件伏安特性的测定</option>
+									<option value="11">霍尔效应实验</option>
+									<option value="12">电位差计设计与应用</option>
+									<option value="13">太阳能电池特性测量</option>
+									<option value="14">金属电子逸出功的测定</option>
+									<option value="15">RLC电路谐振特性研究</option>
+									<option value="16">密立根油滴实验</option>
+									<option value="17">半导体PN结物理特性及弱电流测量</option>
+									<option value="18">分光仪的调节和使用</option>
+									<option value="19">衍射光栅（需做过分光仪实验）</option>
+									<option value="20">迈克尔逊干涉仪</option>
+									<option value="21">偏振光旋光实验</option>
+									<option value="22">几何光学实验--测量薄透镜的焦距</option>
+									<option value="23">光的等厚干涉</option>
 								</select>
 								<br/>
 								周次：

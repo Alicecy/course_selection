@@ -59,29 +59,21 @@
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
                        href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
-                <c:if test="${!empty student}">
+                <c:if test="${!empty teacher}">
                     <li>
-                        <a class="profile-pic" href="#">用户：${student.sname}</a>
+                        <a class="profile-pic" href="#">用户：${teacher.tname}</a>
                     </li>
                 </c:if>
 
-                <c:if test="${!empty student}">
+                <c:if test="${!empty teacher}">
                     <li>
-                        <a class="profile-pic" href="../to/login"> 登出 </a>
+                        <a class="profile-pic" href="../logout_teacher"> 登出 </a>
                     </li>
                 </c:if>
 
-                <c:if test="${empty student}">
+                <c:if test="${empty teacher}">
                     <li>
-                        <a class="profile-pic" href="../to/login"> 登陆 </a>
+                        <a class="profile-pic" href="../teacher/login_teacher"> 登陆 </a>
                     </li>
                 </c:if>
                 </li>
@@ -97,42 +89,41 @@
             </div>
             <ul class="nav" id="side-menu">
                 <li style="padding: 70px 0 0;">
-                    <a href="homepage" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
+                    <a href="homepage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
                 </li>
                 <li>
-                    <a href="experiments" class="waves-effect"><i class="fa fa-table fa-fw"
-                                                                  aria-hidden="true"></i>实验预约<br/>[Experiment
+                    <a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                   aria-hidden="true"></i>发布信息<br/>[Experiment
                         Appointment]</a>
                 </li>
                 <li>
-                    <a href="query_teacher" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                    aria-hidden="true"></i>任课教师查询<br/>[Query
-                        Teacher]</a>
+                    <a href="query_student_subscribe" class="waves-effect"><i class="fa fa-info-circle fa-fw"
+                                                                              aria-hidden="true"></i>查询实验名单 <br/>[Query the list of experiments]</a>
                 </li>
                 <li>
-                    <a href="message" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>留言板<br/>[Message
-                        Board]</a>
+                    <a href="query_teacher_teacher" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>查询任课教师<br/>[Inquire about the teacher]</a>
                 </li>
                 <li>
-                    <a href="lostfound" class="waves-effect"><i class="fa fa-globe fa-fw"
-                                                                aria-hidden="true"></i>失物招领<br/>[Lost and Found]</a>
+                    <a href="reply_message" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>回复留言板<br/>[Reply to student messages]</a>
                 </li>
                 <li>
-                    <a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                              aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
+                    <a href="lostfound_teacher" class="waves-effect"><i class="fa fa-search"></i> 失物招领<br/>[Lost and Found]</a>
                 </li>
                 <li>
-                    <a href="teacher_channel" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher
-                        Channel]</a>
+                    <a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                                                     aria-hidden="true"></i>重置学生密码<br/>[Reset the student's password]</a>
+                </li>
+                <li>
+                    <a href="set_startDate" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>设置开学日期<br/>[Set start date]</a>
                 </li>
             </ul>
             <div class="center p-20">
-                <c:if test="${empty student}">
-                    <a href="../to/login" class="btn btn-danger btn-block waves-effect waves-light"
+                <c:if test="${empty teacher}">
+                    <a href="../teacher/login_teacher" class="btn btn-danger btn-block waves-effect waves-light"
                        aria-hidden="true">登录</a>
                 </c:if>
-                <c:if test="${!empty student}">
-                    <a href="../logout" class="btn btn-danger btn-block waves-effect waves-light"
+                <c:if test="${!empty teacher}">
+                    <a href="../logout_teacher" class="btn btn-danger btn-block waves-effect waves-light"
                        aria-hidden="true">登出</a>
                 </c:if>
             </div>
@@ -152,8 +143,7 @@
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="homepage">主页</a></li>
-                        <li><a href="teacher_channel">教师通道</a></li>
+                        <li><a href="homepage_teacher">主页</a></li>
                         <li><a href="post_content">信息发布</a></li>
                         <li class="active">发布实验开放信息</li>
                     </ol>

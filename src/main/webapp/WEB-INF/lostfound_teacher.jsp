@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8" deferredSyntaxAllowedAsLiteral="true"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%--实验预约目录--%>
-
-<!DOCTYPE html>
-<html lang="en">
+         pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix='fmt' %>
+<html>
 
 <head>
 	<meta charset="utf-8">
@@ -98,12 +94,12 @@
 				</li>
 				<li>
 					<a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
-																   aria-hidden="true"></i>发布信息<br/>[Experiment
+					                                               aria-hidden="true"></i>发布信息<br/>[Experiment
 						Appointment]</a>
 				</li>
 				<li>
 					<a href="query_student_subscribe" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-																			  aria-hidden="true"></i>查询实验名单 <br/>[Query the list of experiments]</a>
+					                                                          aria-hidden="true"></i>查询实验名单 <br/>[Query the list of experiments]</a>
 				</li>
 				<li>
 					<a href="query_teacher_teacher" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>查询任课教师<br/>[Inquire about the teacher]</a>
@@ -116,7 +112,7 @@
 				</li>
 				<li>
 					<a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
-																	 aria-hidden="true"></i>重置学生密码<br/>[Reset the student's password]</a>
+					                                                 aria-hidden="true"></i>重置学生密码<br/>[Reset the student's password]</a>
 				</li>
 				<li>
 					<a href="set_startDate" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>设置开学日期<br/>[Set start date]</a>
@@ -134,118 +130,123 @@
 			</div>
 		</div>
 	</div>
+	<!-- ============================================================== -->
+	<!-- End Left Sidebar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- Page Content -->
+	<!-- ============================================================== -->
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row bg-title">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					<h1 class="page-title">查询学生预约</h1>
+					<h1 class="page-title">失物招领</h1>
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					<ol class="breadcrumb">
-						<li><a href="homepage_teacher">主页</a></li>
-						<li class="active">查询学生预约情况</li>
+						<li><a href="/homepage_teacher">主页</a></li>
+						<li class="active">失物招领</li>
 					</ol>
 				</div>
-
-				<!-- /.col-lg-12 -->
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<div style="text-align: left; font-size: 150%;width: 500px;margin: 2% auto">
-							<form action="/student_subscribe_result" method="post">
-								实验：
-								<select id="eid" name="eid" class="form-control form-control-line">
-									<option value ="0">--请选择--</option>
-									<option value="1">落球法测量液体的黏滞系数</option>
-									<option value="2">拉伸法测量金属丝杨氏模量</option>
-									<option value="3">测量金属的密度</option>
-									<option value="4">单摆和复摆实验</option>
-									<option value="5">三线摆和扭摆实验</option>
-									<option value="6">空气密度与普适气体常数测量</option>
-									<option value="7">液体表面张力系数的测定</option>
-									<option value="8">惠斯通电桥实验</option>
-									<option value="9">数字示波器的使用</option>
-									<option value="10">电路元件伏安特性的测定</option>
-									<option value="11">霍尔效应实验</option>
-									<option value="12">电位差计设计与应用</option>
-									<option value="13">太阳能电池特性测量</option>
-									<option value="14">金属电子逸出功的测定</option>
-									<option value="15">RLC电路谐振特性研究</option>
-									<option value="16">密立根油滴实验</option>
-									<option value="17">半导体PN结物理特性及弱电流测量</option>
-									<option value="18">分光仪的调节和使用</option>
-									<option value="19">衍射光栅（需做过分光仪实验）</option>
-									<option value="20">迈克尔逊干涉仪</option>
-									<option value="21">偏振光旋光实验</option>
-									<option value="22">几何光学实验--测量薄透镜的焦距</option>
-									<option value="23">光的等厚干涉</option>
-								</select>
-								<br/>
-								周次：
-								<select id="week" name="weeknum" class="form-control form-control-line">
-									<option value ="1">1</option>
-									<option value ="2">2</option>
-									<option value ="3">3</option>
-									<option value ="4">4</option>
-									<option value ="5">5</option>
-									<option value ="6">6</option>
-									<option value ="7">7</option>
-									<option value ="8">8</option>
-									<option value ="9">9</option>
-									<option value ="10">10</option>
-									<option value ="11">11</option>
-									<option value ="12">12</option>
-									<option value ="13">13</option>
-									<option value ="14">14</option>
-									<option value ="15">15</option>
-									<option value ="16">16</option>
-									<option value ="17">17</option>
-									<option value ="18">18</option>
-								</select>
-								<br/>
-								星期：
-								<select id="day" name="day" class="form-control form-control-line">
-									<option value ="7">日</option>
-									<option value ="1">一</option>
-									<option value ="2">二</option>
-									<option value ="3">三</option>
-									<option value ="4">四</option>
-									<option value ="5">五</option>
-									<option value ="6">六</option>
-								</select>
-								<br/>
-								节次：
-								<select id="section" name="section" class="form-control form-control-line">
-									<option value ="1">1-4</option>
-									<option value ="2">5-8</option>
-								</select><br><br>
-								<input type="submit" class="btn btn-success" value="查询" />
-							</form>
+						<h2 class="box-title"><a href="#box1">我要发布</a></h2>
+						<c:forEach items="${page.list}" var="c">
+							<div style="border:1px solid black;width: 100%;">
+								<table class="table" style="word-break:break-all;">
+									<tr>
+										<th style="width:10%">${c.id}&nbsp;&nbsp;&nbsp;${c.type}</th>
+										<th style="width:70%">摘要：${c.title}</th>
+										<th style="width:30%"></th>
+									</tr>
+									<tr>
+										<td></td>
+										<td>${c.content}</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>发布时间：<fmt:formatDate value="${c.time}" pattern="yyyy-MM-dd HH:mm"/></td>
+										<td>${c.place}&nbsp;(${c.number})&nbsp;</td>
+									</tr>
+									<br>
+								</table>
+							</div>
+							<br><br><br>
+						</c:forEach>
+						<div style="height:20px;widht:100px;margin: 0 auto;text-align: center">
+							<a href="?start=1">[首 页]</a>
+							<a href="?start=${page.pageNum-1}">[上一页]</a>
+							<a href="?start=${page.pageNum+1}">[下一页]</a>
+							<a href="?start=${page.pages}">[末 页]</a>
 						</div>
 					</div>
 				</div>
+				<div id="box1" class="white-box" style="float:left;width:70%;margin:2% auto;">
+					<p>发布启事</p>
+					<form method="post" action="/laf_t">
+						<div class="form-group" style="margin: 5%;">
+							<label class="col-md-12">信息主题：</label>
+							<div class="col-md-12">
+								<input type="text" name="title" required="required"
+								       class="form-control form-control-line" style="margin: 2%;"></div>
+						</div>
+						<div class="form-group" style="margin: 5%;">
+							<label class="col-md-12">详细信息：</label>
+							<div class="col-md-12">
+                                <textarea rows="5" class="form-control form-control-line" required="required"
+                                          name="content" style="resize: none; margin: 0%;"></textarea>
+							</div>
+						</div>
+						<div class="form-group" style="margin: 5%;">
+							<label class="col-sm-12" style="margin: 2%;">选择类型：</label>
+							<div class="col-sm-12">
+								<select class="form-control form-control-line" name="type">
+									<option value="招领">招领</option>
+									<option value="遗失">遗失</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" style="margin: 5%;">
+							<div class="col-sm-12">
+								<label class="col-md-12" style="margin: 2%">实验室号：</label>
+								<div class="col-md-12">
+									<input type="text" name="number" required="required"
+									       class="form-control form-control-line" style="margin: 2%;"></div>
+							</div>
+						</div>
+						<div class="form-group" style="margin: 5%;">
+							<div class="col-sm-12" >
+								<input type="submit" class="btn btn-success" value="提交" style="width:125px;margin: 5%; float: right;"/>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
-			<!-- /.row -->
 		</div>
-		<!-- /.container-fluid -->
-		<footer class="footer text-center">@2020 黑龙江大学 大学物理实验系统</footer>
 	</div>
-	<!-- /#page-wrapper -->
+	<!-- /.container-fluid -->
+	<footer class="footer text-center">@2020 黑龙江大学 大学物理实验系统</footer>
 </div>
+<!-- ============================================================== -->
+<!-- End Page Content -->
+<!-- ============================================================== -->
+
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Menu Plugin JavaScript -->
-<script src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--slimscroll JavaScript -->
-<script src="/js/jquery.slimscroll.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
-<script src="/js/waves.js"></script>
+<script src="js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="/js/custom.min.js"></script>
+<script src="js/custom.min.js"></script>
 </body>
 
 </html>

@@ -70,14 +70,7 @@
 					<a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
 					   href="javascript:void(0)"><i class="fa fa-bars"></i></a>
 				</li>
-				<li>
-					<form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-						<input type="text" placeholder="Search..." class="form-control">
-						<a href="">
-							<i class="fa fa-search"></i>
-						</a>
-					</form>
-				</li>
+
 				<c:if test="${!empty student}">
 					<li>
 						<a class="profile-pic" href="#">用户：${student.sname}</a>
@@ -133,10 +126,6 @@
 					<a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw"
 					                                          aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
 				</li>
-				<li>
-					<a href="/teacher_channel" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher
-						Channel]</a>
-				</li>
 			</ul>
 			<div class="center p-20">
 				<c:if test="${empty student}">
@@ -163,20 +152,7 @@
 						<h4 style="margin: 0px;padding: 0px;text-align: center">&nbsp;-Index-</h4>
 						<p style="text-align: center">+-------------------------------------------------------------------+</p>
 						<br/>
-						<h2 style="color: red">本周是第
-							<%
-								SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-								Date openDay = sdf.parse("2020-01-01 12:00:00");
-								GregorianCalendar g = new GregorianCalendar();
-								g.setTime(openDay);
-								int num1 = g.get(Calendar.WEEK_OF_YEAR);//计算开学日期的周数
-								Date nowdate = new Date();
-								String s = sdf.format(nowdate);
-								nowdate = sdf.parse(s);
-								g.setTime(nowdate);
-								int num2 = g.get(Calendar.WEEK_OF_YEAR);//计算当前日期的周数
-								out.print(num2 - num1 + 1);
-							%>周</h2>
+						<h2 style="color: red">本周是第${nowWeek}周</h2>
 						<h1 style="color: red;">通知</h1>
 						<c:forEach items="${notice}" var="c" varStatus="st">
 						<h4> <ul><li>
@@ -185,7 +161,7 @@
 						</c:forEach>
 						<br/>
 						<h1 style="color: red">实验预约注意事项</h1>
-						<c:forEach items="${attention}" var="c" varStatus="st">
+						<c:forEach items="${attentions}" var="c" varStatus="st">
 							<h4> <ul><li>
 									${c.comment}
 							</li></ul></h4>
@@ -205,7 +181,7 @@
 								<tr>
 									<th>实验号</th>
 									<th>实验题目</th>
-									<th>房间号</th>s
+									<th>房间号</th>
 									<th>开设周次</th>
 									<th>备注</th>
 								</tr>

@@ -62,14 +62,6 @@
                 <li>
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
                 <c:if test="${!empty student}">
                     <li>
                         <a class="profile-pic" href="#">用户：${student.sname}</a>
@@ -117,9 +109,6 @@
                 <li>
                     <a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
                 </li>
-                <li>
-                    <a href="/teacher_channel" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher Channel]</a>
-                </li>
             </ul>
             <div class="center p-20">
                 <c:if test="${empty student}">
@@ -166,6 +155,7 @@
                                     <th>序号</th>
                                     <th>实验名称</th>
                                     <th>周次</th>
+                                    <th>星期</th>
                                     <th>节次</th>
                                     <th>实验室号</th>
                                     <th>座位号</th>
@@ -178,6 +168,7 @@
                                     <td>${st.count}</td>
                                     <td>${si.ename}</td>
                                     <td>${si.weeknum}</td>
+                                    <td>${si.day}</td>
                                     <td><c:if test="${si.section==1}">1-4</c:if><c:if test="${si.section==2}">5-8</c:if></td>
                                     <td>${si.lab}</td>
                                     <td>${si.seat}</td>

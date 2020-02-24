@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix='fmt'  %>
+<%@ page import="org.apache.commons.lang3.StringUtils" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,14 +60,6 @@
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
                        href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
                 <c:if test="${!empty teacher}">
                     <li>
                         <a class="profile-pic" href="#">用户：${teacher.tname}</a>
@@ -97,7 +90,7 @@
             </div>
             <ul class="nav" id="side-menu">
                 <li style="padding: 70px 0 0;">
-                    <a href="homePage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
+                    <a href="homepage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
                 </li>
                 <li>
                     <a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
@@ -113,6 +106,9 @@
                 </li>
                 <li>
                     <a href="reply_message" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>回复留言板<br/>[Reply to student messages]</a>
+                </li>
+                <li>
+                    <a href="lostfound_teacher" class="waves-effect"><i class="fa fa-search"></i> 失物招领<br/>[Lost and Found]</a>
                 </li>
                 <li>
                     <a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -143,7 +139,7 @@
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="homePage_teacher">主页</a></li>
+                        <li><a href="homepage_teacher">主页</a></li>
                         <li class="active">回复留言板</li>
                     </ol>
                 </div>
@@ -153,45 +149,60 @@
                 <div class="col-md-12">
                     <div class="white-box">
                         <h3 class="box-title">留言板</h3>
-                        <div style="border:3px solid RGB(237,241,245)">
-                            <c:forEach items="${mes}" var="c" varStatus="st">
 
-                                <table class="table">
-                                    <tr>
+                            <div style="border:3px solid RGB(237,241,245)">
+                                <c:forEach items="${mes}" var="c" varStatus="st">
+                                    <form action="reply_message" >
+                                    <table class="table">
+                                        <tr>
 
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">编号：</td>
-                                        <td>${c.id}</td>
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言时间：</td>
-                                        <td><fmt:formatDate value="${c.time}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">姓名：</td>
-                                        <td>${c.sname}</td>
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言给：</td>
-                                        <td> ${c.to}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言：</td>
-                                        <td colspan="3"> ${c.content}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background-color:RGB(237,241,245);color: black;text-align: center">回复：</td>
-                                        <td colspan="3">
-                                            <div class="col-md-12">
-                                                <input type="text" class="form-control form-control-line"  name=" " value=" " style="border-bottom: 1px solid black;">
-                                            </div>
-                                        </td>
-                                        <td colspan="3">
-                                            <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <button class="btn btn-success" type="submit" >确认回复</button>
-                                            </div>
-                                             </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </c:forEach>
-                        </div>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">编号：</td>
+                                            <td><input value="${c.id}" type="text" readonly name="id" style="border: none"/> </td>
+                                            <%--<td>${c.id}</td>--%>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言时间：</td>
+                                            <td><fmt:formatDate value="${c.time}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">姓名：</td>
+                                            <td>${c.sname}</td>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言给：</td>
+                                            <td> ${c.to}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">留言：</td>
+                                            <td colspan="3"> ${c.content}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:RGB(237,241,245);color: black;text-align: center">回复：</td>
+                                            <td colspan="3">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control form-control-line"  name="reply" value="${c.reply}"
+                                                           style="border-bottom: 1px solid black;">
+
+                                                </div>
+                                            </td>
+                                            <td colspan="3">
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <c:if test="${!empty teacher}">
+                                                            <c:if test="${c.reply==null||StringUtils.isBlank(c.reply)}">
+                                                                <button class="btn btn-success" type="submit" >确认回复</button>
+                                                            </c:if>
+                                                            <c:if test="${!(c.reply==null||StringUtils.isBlank(c.reply))}">
+                                                                <button class="btn btn-success" style="background-color: red;" onclick="fun(this)" type="button">已回复</button>
+                                                            </c:if>
+                                                        </c:if>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </form>
+                                </c:forEach>
+                            </div>
+
+
                     </div>
                 </div>
             </div>
@@ -200,10 +211,6 @@
     <!-- /.container-fluid -->
     <footer class="footer text-center">@2020 黑龙江大学 大学物理实验系统</footer>
 </div>
-<!-- ============================================================== -->
-<!-- End Page Content -->
-<!-- ============================================================== -->
-<!-- /#wrapper -->
 <!-- jQuery -->
 <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -216,6 +223,20 @@
 <script src="js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.min.js"></script>
+
+<script type="text/javascript">
+        function fun(){
+            $.ajax({
+                type: "post",
+                data: {},
+                success: function() {
+                    alert("只能回复一次，您已经回复过了");
+                }
+            });
+        }
+
+
+</script>
 </body>
 
 </html>

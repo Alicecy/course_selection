@@ -1,8 +1,9 @@
 package com.course_selection.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PostNote {
+public class PostNote implements Serializable {
     private Integer id;
     private String comment;
     private String publisher;

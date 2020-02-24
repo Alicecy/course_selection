@@ -2,24 +2,20 @@ package com.course_selection.config;
 
 
 import com.course_selection.realm.CustomRealm;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -91,18 +87,17 @@ public class ShiroConfig {
         //配置未登录时拦截到的路径
         bean.setLoginUrl("/to/login");
         bean.setUnauthorizedUrl("/unauth");
-        bean.setLoginUrl("/teacher/login_teacher");
-        bean.setUnauthorizedUrl("/unauth");
         //配置访问权限
         Map<String, String> filterChainDefinitionMap=new HashMap<>();
         filterChainDefinitionMap.put("/to/login","anon");
         filterChainDefinitionMap.put("/**","anon");
+        filterChainDefinitionMap.put("/experiments","authc");
+        filterChainDefinitionMap.put("/message","authc");
+        filterChainDefinitionMap.put("/lostfound","authc");
+        filterChainDefinitionMap.put("/mailbox","authc");
         filterChainDefinitionMap.put("/teacher/login_teacher","anon");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
-
-
-
 
 }

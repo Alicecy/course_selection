@@ -84,7 +84,7 @@ public class TeacherController extends HttpServlet {
             modelMap.addAttribute("errorMeg",errorMeg);
             Teacher teacher=teacherMapper.findByTid(tid);
             request.getSession(false).setAttribute("teacher", teacher);
-            return "redirect:homePage_teacher";
+            return "redirect:homepage_teacher";
         }else{
             modelMap.addAttribute("errorMeg",errorMeg);
             return "login_teacher";

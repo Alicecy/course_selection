@@ -14,18 +14,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <title>大学物理实验系统</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
-    <link href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <!-- animation CSS -->
-    <link href="/css/animate.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+    <link href="css/colors/default.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,14 +35,6 @@
 </head>
 
 <body class="fix-header">
-<!-- ============================================================== -->
-<!-- Preloader -->
-<!-- ============================================================== -->
-<div class="preloader">
-    <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-    </svg>
-</div>
 <!-- ============================================================== -->
 <!-- Wrapper -->
 <!-- ============================================================== -->
@@ -64,29 +56,21 @@
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
                        href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
-                <c:if test="${!empty student}">
+                <c:if test="${!empty teacher}">
                     <li>
-                        <a class="profile-pic" href="#">用户：${student.sname}</a>
+                        <a class="profile-pic" href="#">用户：${teacher.tname}</a>
                     </li>
                 </c:if>
 
-                <c:if test="${!empty student}">
+                <c:if test="${!empty teacher}">
                     <li>
-                        <a class="profile-pic" href="../to/login"> 登出 </a>
+                        <a class="profile-pic" href="../logout_teacher"> 登出 </a>
                     </li>
                 </c:if>
 
-                <c:if test="${empty student}">
+                <c:if test="${empty teacher}">
                     <li>
-                        <a class="profile-pic" href="../to/login"> 登陆 </a>
+                        <a class="profile-pic" href="../teacher/login_teacher"> 登陆 </a>
                     </li>
                 </c:if>
                 </li>
@@ -102,45 +86,47 @@
             </div>
             <ul class="nav" id="side-menu">
                 <li style="padding: 70px 0 0;">
-                    <a href="homepage" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
+                    <a href="homepage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
                 </li>
                 <li>
-                    <a href="experiments" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>实验预约<br/>[Experiment
+                    <a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                   aria-hidden="true"></i>发布信息<br/>[Experiment
                         Appointment]</a>
                 </li>
                 <li>
-                    <a href="query_teacher" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>任课教师查询<br/>[Query
-                        Teacher]</a>
+                    <a href="query_student_subscribe" class="waves-effect"><i class="fa fa-info-circle fa-fw"
+                                                                              aria-hidden="true"></i>查询实验名单 <br/>[Query the list of experiments]</a>
                 </li>
                 <li>
-                    <a href="message" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>留言板<br/>[Message
-                        Board]</a>
+                    <a href="query_teacher_teacher" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>查询任课教师<br/>[Inquire about the teacher]</a>
                 </li>
                 <li>
-                    <a href="lostfound" class="waves-effect"><i class="fa fa-globe fa-fw"
-                                                                aria-hidden="true"></i>失物招领<br/>[Lost and Found]</a>
+                    <a href="reply_message" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>回复留言板<br/>[Reply to student messages]</a>
                 </li>
                 <li>
-                    <a href="mailbox" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                              aria-hidden="true"></i>投诉信箱<br/>[Complaint Mailbox]</a>
+                    <a href="lostfound_teacher" class="waves-effect"><i class="fa fa-search"></i> 失物招领<br/>[Lost and Found]</a>
                 </li>
                 <li>
-                    <a href="#" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>教师通道<br/>[Teacher
-                        Channel]</a>
+                    <a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                                                     aria-hidden="true"></i>重置学生密码<br/>[Reset the student's password]</a>
+                </li>
+                <li>
+                    <a href="set_startDate" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>设置开学日期<br/>[Set start date]</a>
                 </li>
             </ul>
             <div class="center p-20">
-                <c:if test="${empty student}">
-                    <a href="../to/login" class="btn btn-danger btn-block waves-effect waves-light"
+                <c:if test="${empty teacher}">
+                    <a href="../teacher/login_teacher" class="btn btn-danger btn-block waves-effect waves-light"
                        aria-hidden="true">登录</a>
                 </c:if>
-                <c:if test="${!empty student}">
-                    <a href="../logout" class="btn btn-danger btn-block waves-effect waves-light"
+                <c:if test="${!empty teacher}">
+                    <a href="../logout_teacher" class="btn btn-danger btn-block waves-effect waves-light"
                        aria-hidden="true">登出</a>
                 </c:if>
             </div>
         </div>
     </div>
+
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row bg-title">
@@ -149,8 +135,7 @@
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li><a href="homepage">主页</a></li>
-                        <li><a href="teacher_channel">教师通道</a></li>
+                        <li><a href="homepage_teacher">主页</a></li>
                         <li class="active">查询学生预约情况</li>
                     </ol>
                 </div>
@@ -160,21 +145,28 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box">
-                        <table class="table">
+                        <p style="color: red;font-size: 25px;">在您全部打分完毕后，请点击刷新，查看是否全部打分成功!</p>
+                        <table class="table" id="data_table">
                             <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>学号</th>
+                                <th  style="width:150px;">学号</th>
+	                            <th>姓名</th>
                                 <th>座位号</th>
+                                <th  style="width:150px;">成绩</th>
+                                <th>提交</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${s}" var="c" varStatus="s">
-                                <tr>
-                                    <td>${s.count}</td>
-                                    <td>${c.sid}</td>
-                                    <td>${c.seat}</td>
-                                </tr>
+                                    <tr>
+                                        <td>${s.count}</td>
+                                        <td><input class="form-control form-control-line" id="sid" name="sid" value="${c.sid}" readonly style="background-color: white"></td>
+	                                    <td>${c.sname}</td>
+                                        <td><span id="seat">${c.seat}</span></td>
+                                        <td><input class="form-control form-control-line" id="grade" name="grade" value="${c.grade}"></td>
+                                        <td><input type="button" value="确定" class="btn btn-success"></td>
+                                    </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -201,6 +193,37 @@
 <script src="/js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="/js/custom.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var TaskType = '';
+        $("#data_table tr:gt(0)").click(function () {
+            e = $(this).find("td").eq(4)[0].children[0].value;
+            if (e=="确定") {
+                a = $(this).find("td").eq(0).html();
+                b = $(this).find("td").eq(1)[0].children[0].value;
+                c = $(this).find("td").eq(2).html();
+                d =$(this).find("td").eq(3)[0].children[0].value;
+                var sid = b;
+                var grade =d;
+                $.ajax({
+                    type: "post",
+                    url: "/addgrade",
+                    data: {
+                        "sid": sid,
+                        "grade": grade
+                    },
+                    success: function (data, status) {
+                       // 千万不能写弹窗,点击一行触发事件才能传进来参数，如果写了会点一下就有弹窗
+                    },
+                    error: function () {
+                      //  千万不能写弹窗
+                    }
+                });
+            }
+        });
+    });
+
+</script>
 </body>
 
 </html>

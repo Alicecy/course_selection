@@ -1,11 +1,13 @@
 package com.course_selection.controller;
 
-import com.course_selection.pojo.ShowExperiment;
+import com.course_selection.pojo.School_Hours;
 import com.course_selection.pojo.Student;
 import com.course_selection.service.impl.CourseServiceImpl;
 import com.course_selection.service.impl.StudentServiceImpl;
+import com.course_selection.util.WeekUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +20,8 @@ public class ExperimentController {
     private CourseServiceImpl courseService;
     @Autowired
     private StudentServiceImpl studentService;
+    @Autowired
+    private RedisTemplate<Object, Object> redisTemplate;
 
     @RequestMapping("/count")
     public String count(HttpServletRequest request, HttpServletResponse response,
@@ -44,8 +48,17 @@ public class ExperimentController {
         }
         System.out.println(result);
         Student student = (Student) request.getSession().getAttribute("student");
+        if (student.getSelected_num() == student.getTotal_num()) {
+            return "选择实验已达上限！";
+        }
+        long nowWeek = new WeekUtil().countWeek((School_Hours) redisTemplate.opsForValue().get("school_hours"));
+        if (nowWeek >= week) {
+            return "仅能选择下周及之后的实验，请重新选择！";
+        }
         int sid = student.getSid();
-        result = courseService.select_course(sid, eid, week, day, section);
+        String sname = student.getSname();
+        int grade=0;
+        result = courseService.select_course(sid, sname, eid, week, day, section,grade);
         student.selectCourse();
         student = studentService.addCourse(student);
         System.out.println(result);
@@ -61,6 +74,10 @@ public class ExperimentController {
         System.out.println(student);
         if (null == student) {
             return "登录信息已过期，请重新登陆。";
+        }
+        long nowWeek = new WeekUtil().countWeek((School_Hours) redisTemplate.opsForValue().get("school_hours"));
+        if (nowWeek >= courseService.findOne(student.getSid(), eid).getWeeknum()) {
+            return "仅能取消本周及之后的预约，请重新选择！";
         }
         student.cancelCourse();
         student = studentService.cancelCourse(student);

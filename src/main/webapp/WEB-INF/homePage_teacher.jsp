@@ -2,8 +2,6 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.GregorianCalendar" %>
-<%@ page import="org.springframework.beans.factory.annotation.Autowired" %>
-<%@ page import="com.course_selection.mapper.ExperimentMapper" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" deferredSyntaxAllowedAsLiteral="true" %>
 
@@ -70,14 +68,6 @@
                     <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
                        href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                 </li>
-                <li>
-                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </form>
-                </li>
                 <c:if test="${!empty teacher}">
                     <li>
                         <a class="profile-pic" href="#">用户：${teacher.tname}</a>
@@ -109,7 +99,7 @@
             </div>
             <ul class="nav" id="side-menu">
                 <li style="padding: 70px 0 0;">
-                    <a href="homePage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
+                    <a href="homepage_teacher" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>主页[Home]</a>
                 </li>
                 <li>
                     <a href="post_content" class="waves-effect"><i class="fa fa-table fa-fw"
@@ -125,6 +115,9 @@
                 </li>
                 <li>
                     <a href="reply_message" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>回复留言板<br/>[Reply to student messages]</a>
+                </li>
+                <li>
+                    <a href="lostfound_teacher" class="waves-effect"><i class="fa fa-search" aria-hidden="true"></i> 失物招领<br/>[Lost and Found]</a>
                 </li>
                 <li>
                     <a href="reset_password" class="waves-effect"><i class="fa fa-columns fa-fw"
@@ -161,20 +154,7 @@
                         <br/>
                         <br/>
                         <br/>
-                        <h2 style="color: red">本周是第
-                            <%
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                Date openDay = sdf.parse("2020-01-01 12:00:00");
-                                GregorianCalendar g = new GregorianCalendar();
-                                g.setTime(openDay);
-                                int num1 = g.get(Calendar.WEEK_OF_YEAR);//计算开学日期的周数
-                                Date nowdate = new Date();
-                                String s = sdf.format(nowdate);
-                                nowdate = sdf.parse(s);
-                                g.setTime(nowdate);
-                                int num2 = g.get(Calendar.WEEK_OF_YEAR);//计算当前日期的周数
-                                out.print(num2 - num1 + 1);
-                            %>周</h2>
+                        <h2 style="color: red">本周是第${nowWeek}周</h2>
                         <h1 style="color: red;">通知</h1>
                         <c:forEach items="${notice}" var="c" varStatus="st">
                             <h4> <ul><li>
@@ -183,7 +163,7 @@
                         </c:forEach>
                         <br/>
                         <h1 style="color: red">实验预约注意事项</h1>
-                        <c:forEach items="${attention}" var="c" varStatus="st">
+                        <c:forEach items="${attentions}" var="c" varStatus="st">
                             <h4> <ul><li>
                                     ${c.comment}
                             </li></ul></h4>
@@ -196,13 +176,14 @@
                             </li></ul></h4>
                         </c:forEach>
                         <p>+-------------------------------------------------------------------+</p>
+                        <h1 style="color: red">实验开放信息</h1>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th>实验号</th>
                                     <th>实验题目</th>
-                                    <th>房间号</th>s
+                                    <th>房间号</th>
                                     <th>开设周次</th>
                                     <th>备注</th>
                                 </tr>

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,7 +91,7 @@ public class UserController extends HttpServlet {
             Student student=studentMapper.findBySid(sid);
 
             request.getSession(false).setAttribute("student", student);
-            return "homePage";
+            return "redirect:/homepage";
         }else{
             modelMap.addAttribute("errorMeg",errorMeg);
             return "login";

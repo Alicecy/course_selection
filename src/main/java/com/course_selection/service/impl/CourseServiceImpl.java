@@ -40,9 +40,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public String select_course(Integer sid, Integer eid, Integer week, Integer day, Integer section) {
+    public String select_course(Integer sid, String sname, Integer eid, Integer week, Integer day, Integer section,Integer grade) {
         String result = null;
-
         RedisSerializer redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
         List<Selection_Information> sc = selected(sid);
@@ -89,8 +88,9 @@ public class CourseServiceImpl implements CourseService {
                 break;
             }
         }
-        Selection_Information si=new Selection_Information(0,sid, eid, experiment.getEname(), week, day, section, experiment.getLab(), seat);
-        selectionMapper.add(sid, eid, experiment.getEname(), week, day, section, experiment.getLab(), seat);
+        grade=0;
+        Selection_Information si=new Selection_Information(0,sid, sname, eid, experiment.getEname(), week, day, section, experiment.getLab(), seat,grade);
+        selectionMapper.add(sid, sname, eid, experiment.getEname(), week, day, section, experiment.getLab(), seat,grade);
         if (sc == null) {
             sc = new ArrayList<Selection_Information>();
         }
@@ -114,6 +114,11 @@ public class CourseServiceImpl implements CourseService {
         }
         result = "该课程已取消预约";
         return result;
+    }
+
+    @Override
+    public Selection_Information findOne(Integer sid, Integer eid) {
+        return selectionMapper.findSI(sid,eid);
     }
 
     @Override
